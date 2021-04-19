@@ -18,7 +18,7 @@ export default {
       { hid: 'description', name: 'description', content: 'VueFront' }
     ],
     link: [{
-        rel: 'icn',
+        rel: 'icon',
         type: 'image/png',
         href: process.env.BASE_URL+'favicon.ico'
       }],
