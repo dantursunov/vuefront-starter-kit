@@ -1,6 +1,14 @@
 export default {
-  logo: require('~/assets/img/logo_header.svg'),
-  footerLogo: require('~/assets/img/logo_footer.svg'),
+  app: [],
+  // app: ['@vuefront/checkout-app'],
+  image: {
+    logo: {
+      path: '~/assets/img/logo_header.svg'
+    },
+    footerLogo: {
+      path: '~/assets/img/logo_footer.svg'
+    },
+  },
   layouts: {
     '*': {
       headerMenu: [
@@ -17,7 +25,8 @@ export default {
         [
           'ExtraLinks',
           {
-            links: [{
+            links: [
+              {
                 to: '/store/special',
                 text: 'Special'
               },
@@ -39,6 +48,8 @@ export default {
         [
           'Slideshow',
           {
+            sliderNav: true,
+            sliderArrows: true,
             items: [
               'https://img.dreamvention.com/vuefront/banners/Banner_demo_1.jpg',
               'https://img.dreamvention.com/vuefront/banners/Banner_demo_2.jpg'
@@ -61,7 +72,8 @@ export default {
     },
     '/store/category*': {
       columnLeft: [
-        'StoreCategory', [
+        'StoreCategory',
+        [
           'LatestProduct',
           {
             column: true
@@ -72,7 +84,8 @@ export default {
     '/blog/category*': {
       columnRight: [
         'Search',
-        'BlogCategory', [
+        'BlogCategory',
+        [
           'LatestPost',
           {
             column: true

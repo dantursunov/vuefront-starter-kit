@@ -1,14 +1,24 @@
-require('dotenv').config()
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+require("dotenv").config();
+const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
+const isDev = process.env.NODE_ENV === "development";
+
+const modules = [];
+
+if (!isDev) {
+  modules.push("@nuxtjs/pwa");
+}
 
 export default {
-  mode: 'universal',
+  ssr: true,
+  target: isDev ? "server" : "static",
+  modern: !isDev ? "client" : false,
   env: {
     FEATURED_PRODUCT: process.env.FEATURED_PRODUCT
   },
   generate: {
     concurrency: 5,
-    subFolders: false
+    subFolders: false,
+    crawler: true,
   },
   head: {
     title: 'vuefront',
@@ -17,36 +27,52 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'VueFront' }
     ],
-    link: [{
+    link: [
+      {
         rel: 'icon',
         type: 'image/png',
-        href: process.env.BASE_URL+'favicon.ico'
-      }],
+        href: '/favicon.png'
+      }
+    ],
     script: []
   },
   loading: { color: '#3B8070' },
   modules: [
-    '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
     'vuefront-nuxt',
-    'cookie-universal-nuxt'
+    ...modules,
   ],
-  pwa: {
-    icon: {},
-    manifest: {
-      name: 'VueFront'
-    },
-  },
-  router: {
-    base: process.env.BASE_URL
-  },
+  buildModules: [
+    // https://go.nuxtjs.dev/eslint
+    ['@nuxtjs/eslint-module', { fix: true }],
+    // https://go.nuxtjs.dev/stylelint
+    ['@nuxtjs/stylelint-module', {fix: true}]
+    // '@aceforth/nuxt-optimized-images',
+  ],
+  // optimizedImages: {
+  //   optimizeImages: true,
+  //   optimizeImagesInDev: true
+  // },
   build: {
     babel: {
-      plugins: ['lodash']
+      plugins: ['lodash', 'preval' , "@babel/plugin-proposal-optional-chaining"]
     },
-    extractCSS: true,
-    plugins: [new LodashModuleReplacementPlugin({
+    transpile: ["@vuefront/checkout-app"],
+    extractCSS: !isDev,
+    corejs: 2,
+    // optimization: {
+    //   splitChunks: {
+    //     chunks: "all",
+    //     automaticNameDelimiter: ".",
+    //     name: "test",
+    //     maxSize: 256000,
+    //     minSize: 50000,
+    //   },
+    // },
+    plugins: [
+      new LodashModuleReplacementPlugin({
         shorthands: true
-      })]
+      })
+    ]
   }
 }
