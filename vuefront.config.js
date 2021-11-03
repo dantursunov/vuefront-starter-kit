@@ -51,8 +51,11 @@ export default {
             sliderNav: true,
             sliderArrows: true,
             items: [
-              'https://img.dreamvention.com/vuefront/banners/Banner_demo_1.jpg',
-              'https://img.dreamvention.com/vuefront/banners/Banner_demo_2.jpg'
+              'https://images.pexels.com/photos/3723869/pexels-photo-3723869.jpeg?cs=srgb&dl=pexels-molly-champion-3723869.jpg&fm=jpg',
+              'https://images.pexels.com/photos/1988693/pexels-photo-1988693.jpeg?cs=srgb&dl=pexels-steve-johnson-1988693.jpg&fm=jpg',
+              'https://images.pexels.com/photos/3123915/pexels-photo-3123915.jpeg?cs=srgb&dl=pexels-ylanite-koppens-3123915.jpg&fm=jpg',
+              'https://images.pexels.com/photos/5784708/pexels-photo-5784708.jpeg?cs=srgb&dl=pexels-becerra-govea-photo-5784708.jpg&fm=jpg'
+              
             ]
           }
         ],
