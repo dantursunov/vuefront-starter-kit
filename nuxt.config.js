@@ -21,11 +21,11 @@ export default {
     crawler: true,
   },
   head: {
-    title: 'vuefront',
+    title: 'goonut',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'VueFront' }
+      { hid: 'description', name: 'description', content: 'GooNut' }
     ],
     link: [
       {
